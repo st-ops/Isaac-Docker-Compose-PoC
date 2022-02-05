@@ -17,3 +17,6 @@ server
             "start": "nodemon index.js"
         },
 
+    setup mongo cloud atlas
+    ddtest
+    GWneVcZl273PZ4cl
