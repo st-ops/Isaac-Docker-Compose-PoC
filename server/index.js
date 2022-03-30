@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use('/posts', postRoutes);
 
 app.get('/', (req, res)=>{
-    res.send('Hello to memories API');
+    res.send('Hello to memories API project');
 });
 
 const PORT = process.env.PORT || 5000;
