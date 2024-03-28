@@ -1,0 +1,30 @@
+services:
+  # MongoDB service
+  mongodb:
+    image: mongo:latest  # Use the official MongoDB image
+    ports:
+      - "27017:27017"  # Map container port 27017 to host port 27017
+    volumes:
+      - mongo-data:/data/db  # Persist MongoDB data (optional)
+
+  # Frontend service (React application)
+  frontend:
+    build: ./client  # Build the React app from the 'client' directory
+    ports:
+      - "3000:3000"  # Map container port 3000 to host port 3000
+    volumes:
+      - ./client:/app  # Mount the client directory as '/app' inside the container
+
+  # Backend service (Node.js application)
+  backend:
+    build: ./server  # Build the Node.js app from the 'server' directory
+    ports:
+      - "5000:5000"  # Map container port 5000 to host port 5000
+    environment:
+      - CONNECTION_URL=mongodb://mongodb:27017/mymernmongodb  # Set the MongoDB connection URI (replace 'your_database_name' with your actual database name)
+    depends_on:
+      - mongodb  # Ensure the backend starts after the MongoDB service is ready
+
+volumes:
+  mongo-data:  # Optional volume to persist MongoDB data
+
