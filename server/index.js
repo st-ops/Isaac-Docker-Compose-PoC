@@ -22,7 +22,13 @@ app.get('/', (req, res)=>{
     res.send('Hello to memories API project');
 });
 
-const PORT = process.env.PORT || 5000;
+app.get('/health', (req, res) => {
+    // Check the health of your application here
+    // For demonstration purposes, we're simply sending a 200 OK response
+    res.status(200).send('OK');
+  });
+
+const PORT = 5000;
 // Start app
 mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => app.listen(PORT, () => console.log('server running on port:' + PORT)))
